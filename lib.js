@@ -57,7 +57,7 @@ async function createUSer() {
             // Signed in 
             const user = userCredential.user;
             console.log("user =>",user)
-            swal("Good job!", "Your Account Is Created!", "success")
+            swal("Great!", "Your Account Is Created!", "success")
             // ...
         })
         .catch((error) => {
