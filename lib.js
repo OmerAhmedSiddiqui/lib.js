@@ -81,6 +81,7 @@ async function createUSer() {
         Password: password.value,
         UserCreatedDate: Timestamp.fromDate(new Date()),
 
+        profilePic: url
 
     })
 
@@ -93,9 +94,16 @@ async function createUSer() {
 //                                    storgae
 
 let fileUpload = document.querySelector("#profile-pic");
+fileUpload.addEventListener("change", uploadpic)
+let profileImg = document.querySelector("#profile-img");
+
+// nichay wala btn se chalnay k lia or uper wala direct chcange hote hi chalanay k lia
 let btn = document.querySelector("#upload-pic");
 btn.addEventListener("click", uploadpic)
 // let fileInput = fileUpload
+
+
+var url ;
 
 async function uploadpic() {
     // console.log("upload",fileUpload.files[0])
@@ -103,4 +111,6 @@ async function uploadpic() {
     let imageRef = ref(storage, `images/${file.name}`)
     let uploaded = await uploadBytes(imageRef, file)
     console.log(uploaded, "image uploaded");
+    url = await getDownloadURL(imageRef);
+    profileImg.src = url
 }
